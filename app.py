@@ -289,8 +289,9 @@ with tab_resultado:
             df_show = cal[(cal["clase"]>=1)|(cal["p_gran"]>0.06)|(cal["cls_sequia"]>=1)]
 
         df_display = df_show[["dia","tmin_clim","etiqueta","p_alto","p_gran","etq_sequia","spi_clim"]].copy()
-        df_display.insert(0,"fecha",fechas[df_show["dia"].values-1].strftime("%d/%m"))
-        df_display.columns=["Fecha","Tmin clim.","Helada","P(helada alta)","P(granizo)","Sequía","SPI-3"]
+        df_display.insert(0,"Fecha", fechas[df_show["dia"].values-1].strftime("%d/%m"))
+        df_display = df_display.drop(columns=["dia"])
+        df_display.columns = ["Fecha","Tmin clim.","Helada","P(helada alta)","P(granizo)","Sequía","SPI-3"]
         df_display["P(helada alta)"] = df_display["P(helada alta)"].map("{:.1%}".format)
         df_display["P(granizo)"]     = df_display["P(granizo)"].map("{:.1%}".format)
         df_display["SPI-3"]          = df_display["SPI-3"].map("{:.2f}".format)
