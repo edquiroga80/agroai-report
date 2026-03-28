@@ -131,7 +131,8 @@ def generar_texto_mistral(cal, cultivos, nombre, lat, lon, api_key, progress_cb=
         f"MESES CON RIESGO DE GRANIZO:\n{dg}\n\n"
         f"MESES CON DÉFICIT HÍDRICO:\n{ds_txt}\n\n"
         f"CULTIVOS:\n{cult_str}\n\n"
-        f"Redactá un INFORME TÉCNICO AGRONÓMICO de 600-700 palabras en español "
+        f"Redactá un INFORME TÉCNICO AGRONÓMICO de 800-1000 palabras en español. "
+        f"Es OBLIGATORIO completar TODAS las secciones hasta el final sin cortar. "
         f"con secciones en mayúsculas:\n"
         f"1. CARACTERIZACIÓN AGROCLIMATICA\n"
         f"2. RIESGO DE HELADAS POR CULTIVO\n"
@@ -222,7 +223,7 @@ def generar_pdf(nombre, lat, lon, texto, dh, dg, ds_txt,
         ["Granizo","Prob. máxima mensual",f"{pg_max:.1%}  ({mes_g})"],
         ["Sequía","Días sequía leve+/año",f"{ds} días"],
         ["","Días sequía moderada+/año",f"{dm} días"],
-        [f"","SPI-3 mínimo ({mes_s})",f"{spi_min:.2f}"],
+        [f"",f"SPI-3 mínimo ({mes_s})",f"{spi_min:.2f}"],
     ]
     t=Table(tdata,colWidths=[3.5*cm,8*cm,4.5*cm])
     t.setStyle(TableStyle([
