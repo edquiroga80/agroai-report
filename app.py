@@ -71,9 +71,15 @@ with st.sidebar:
                                      format="%.5f", step=0.01)
 
     st.markdown("**3. API Key Mistral**")
-    api_key = st.text_input("Mistral API Key", type="password",
-                             placeholder="Tu API key de Mistral AI",
-                             help="Obtené tu key gratis en console.mistral.ai")
+    # Leer API key desde Streamlit Secrets (producción) o input manual (desarrollo)
+    _key_secret = st.secrets.get("MISTRAL_API_KEY", "") if hasattr(st, "secrets") else ""
+    if _key_secret:
+        api_key = _key_secret
+        st.success("API Key configurada desde secrets.", icon="🔑")
+    else:
+        api_key = st.text_input("Mistral API Key", type="password",
+                                 placeholder="Tu API key de Mistral AI",
+                                 help="Obtené tu key gratis en console.mistral.ai")
 
     st.divider()
     generar = st.button("🌾 Generar informe", use_container_width=True)
